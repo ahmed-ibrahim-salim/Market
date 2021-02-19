@@ -46,18 +46,24 @@ class CartItemsWidget extends StatelessWidget {
                     Text(
                       price.toString(),
                     ),
-                    // Row(
-                    //   children: [
-                    //     IconButton(
-                    //       icon: Icon(product.isFavourite
-                    //           ? Icons.favorite
-                    //           : Icons.favorite_border_outlined),
-                    //       color: Colors.red,
-                    //       onPressed: () =>
-                    //           product.addProductToFavourite(product),
-                    //     ),
-                    //   ],
-                    // )
+                    Container(
+                      width: 100.0,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        border: Border.all(width: 0.8, color: Colors.black54),
+                      ),
+                      child: Container(
+                        margin: EdgeInsets.all(2),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text('-'),
+                            Text(quantity.toString()),
+                            Text('+')
+                          ],
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),

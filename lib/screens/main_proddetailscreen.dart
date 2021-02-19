@@ -68,8 +68,10 @@ class _ProdDetailScreenState extends State<ProdDetailScreen> {
                     right: 5,
                     child: IconButton(
                       iconSize: 30,
-                      icon: Icon(Icons.shopping_cart_outlined),
-                      color: Theme.of(context).primaryColor,
+                      icon: Icon(Icons.add_shopping_cart),
+                      color: cart.cartItems.containsKey(certainProduct.id)
+                          ? Color.fromRGBO(71, 201, 71, 2)
+                          : Theme.of(context).primaryColor,
                       onPressed: () {
                         cart.addItem(certainProduct.id, certainProduct.title,
                             certainProduct.price, certainProduct.imageUrl);

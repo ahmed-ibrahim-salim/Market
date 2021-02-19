@@ -55,9 +55,13 @@ class ProductItem extends StatelessWidget {
                               cart.addItem(product.id, product.title,
                                   product.price, product.imageUrl);
                             },
-                            icon: Icon(Icons.shopping_cart),
-                            label: Text('ADD TO CART'),
-                            color: Color.fromRGBO(71, 201, 71, 2),
+                            icon: Icon(Icons.add_shopping_cart),
+                            label: cart.cartItems.containsKey(product.id)
+                                ? Text('IN CART')
+                                : Text('ADD TO CART'),
+                            color: cart.cartItems.containsKey(product.id)
+                                ? Colors.grey
+                                : Color.fromRGBO(71, 201, 71, 2),
                             textColor: Colors.white,
                           ),
                           IconButton(

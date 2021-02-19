@@ -1,5 +1,6 @@
 import 'package:Market/screens/fromfavproddetail.dart';
 
+import '../providers/cart.dart';
 import '../providers/product.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +13,7 @@ class FavouriteItemsWidget extends StatefulWidget {
 class _FavouriteItemsWidgetState extends State<FavouriteItemsWidget> {
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<Cart>(context);
     final product = Provider.of<Product>(context);
     return GestureDetector(
       onTap: () {
@@ -49,12 +51,20 @@ class _FavouriteItemsWidgetState extends State<FavouriteItemsWidget> {
                         product.price.toString(),
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           RaisedButton.icon(
-                            onPressed: () {},
+                            onPressed: () {
+                              cart.addItem(product.id, product.title,
+                                  product.price, product.imageUrl);
+                            },
                             icon: Icon(Icons.add_shopping_cart),
-                            label: Text('ADD TO CART'),
-                            color: Color.fromRGBO(71, 201, 71, 2),
+                            label: cart.cartItems.containsKey(product.id)
+                                ? Text('IN CART')
+                                : Text('ADD TO CART'),
+                            color: cart.cartItems.containsKey(product.id)
+                                ? Colors.grey
+                                : Color.fromRGBO(71, 201, 71, 2),
                             textColor: Colors.white,
                           ),
                           IconButton(
