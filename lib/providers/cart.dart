@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CartItem {
   final String id;
   final String itemName;
-  final int quantity;
+  int quantity;
   final double price;
   final String imageUrl;
 
@@ -45,5 +45,19 @@ class Cart with ChangeNotifier {
               imageUrl: imageUrl));
     }
     notifyListeners();
+  }
+
+  void increaseQuantity(CartItem carItem) {
+    carItem.quantity += 1;
+    notifyListeners();
+  }
+
+  void decreaseQuantity(CartItem carItem, int quantity) {
+    if (quantity < 1) {
+      return;
+    } else {
+      carItem.quantity -= 1;
+      notifyListeners();
+    }
   }
 }

@@ -1,4 +1,6 @@
+import 'package:Market/providers/cart.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CartItemsWidget extends StatelessWidget {
   final String id;
@@ -17,6 +19,9 @@ class CartItemsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<Cart>(context);
+    final cart2 = cart.cartItems.values;
+    final cartItem = cart2.firstWhere((element) => element.id == id);
     return Card(
       elevation: 5,
       child: GridTile(
@@ -57,9 +62,16 @@ class CartItemsWidget extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Text('-'),
+                            GestureDetector(
+                              onTap: () {
+                                cart.decreaseQuantity(cartItem, quantity);
+                              },
+                              child: Text('-'),
+                            ),
                             Text(quantity.toString()),
-                            Text('+')
+                            GestureDetector(
+                                onTap: () => cart.increaseQuantity(cartItem),
+                                child: Text('+'))
                           ],
                         ),
                       ),

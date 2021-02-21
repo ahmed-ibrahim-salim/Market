@@ -49,9 +49,14 @@ class ProductItem extends StatelessWidget {
                         product.price.toString(),
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           RaisedButton.icon(
-                            onPressed: () {
+                            onPressed:
+                                // cart.cartItems.containsKey(product.id)
+                                //     ? null
+                                //     :
+                                () {
                               cart.addItem(product.id, product.title,
                                   product.price, product.imageUrl);
                             },
