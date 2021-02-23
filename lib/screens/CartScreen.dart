@@ -7,7 +7,8 @@ class CartScreen extends StatelessWidget {
   static const routeName = '/Cart';
   @override
   Widget build(BuildContext context) {
-    final cartItems = Provider.of<Cart>(context).cartItems.values.toList();
+    final cart = Provider.of<Cart>(context);
+    final cartItems = cart.cartItems.values.toList();
     return Scaffold(
       appBar: AppBar(
         title: Text('Cart'),
@@ -23,12 +24,14 @@ class CartScreen extends StatelessWidget {
             mainAxisSpacing: 3,
             childAspectRatio: 2.5 / 1,
           ),
-          itemBuilder: ((ctx, i) => CartItemsWidget(
-                cartItems[i].id,
-                cartItems[i].itemName,
-                cartItems[i].quantity,
-                cartItems[i].price,
-                cartItems[i].imageUrl,
+          itemBuilder: ((ctx, i) => ChangeNotifierProvider.value(
+                value: cartItems[i],
+                child: CartItemsWidget(),
+                // cartItems[i].id,
+                // cartItems[i].itemName,
+                // cartItems[i].quantity,
+                // cartItems[i].price,
+                // cartItems[i].imageUrl,
               )),
         ),
       ),

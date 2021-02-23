@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CartItem {
+class CartItem with ChangeNotifier {
   final String id;
   final String itemName;
   int quantity;
@@ -36,14 +36,21 @@ class Cart with ChangeNotifier {
               ));
     } else {
       _cartItems.putIfAbsent(
-          prodId,
-          () => CartItem(
-              id: DateTime.now().toString(),
-              itemName: title,
-              quantity: 1,
-              price: price,
-              imageUrl: imageUrl));
+        prodId,
+        () => CartItem(
+            id: DateTime.now().toString(),
+            itemName: title,
+            quantity: 1,
+            price: price,
+            imageUrl: imageUrl),
+      );
     }
+    notifyListeners();
+  }
+
+  void removeItem(String id) {
+    final a = cartItems.entries.firstWhere((element) => element.value.id == id);
+    _cartItems.remove(a.key);
     notifyListeners();
   }
 
