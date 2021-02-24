@@ -1,29 +1,13 @@
 import 'package:Market/providers/cart.dart';
-import 'package:Market/providers/product.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CartItemsWidget extends StatelessWidget {
-  // final String id;
-  // final String itemName;
-  // final int quantity;
-  // final double price;
-  // final String imageUrl;
-
-  // CartItemsWidget(
-  //   this.id,
-  //   this.itemName,
-  //   this.quantity,
-  //   this.price,
-  //   this.imageUrl,
-  // );
-
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
     final cartItem1 = Provider.of<CartItem>(context);
-    final cartitemKey = cart.cartItems.entries
-        .firstWhere((element) => element.value.id == cartItem1.id);
+
     return Card(
       elevation: 5,
       child: GridTile(

@@ -52,11 +52,7 @@ class ProductItem extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           RaisedButton.icon(
-                            onPressed:
-                                // cart.cartItems.containsKey(product.id)
-                                //     ? null
-                                //     :
-                                () {
+                            onPressed: () {
                               cart.addItem(product.id, product.title,
                                   product.price, product.imageUrl);
                             },

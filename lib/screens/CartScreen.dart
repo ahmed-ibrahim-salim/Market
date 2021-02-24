@@ -10,9 +10,23 @@ class CartScreen extends StatelessWidget {
     final cart = Provider.of<Cart>(context);
     final cartItems = cart.cartItems.values.toList();
     return Scaffold(
+      bottomNavigationBar: BottomAppBar(
+        color: Color.fromRGBO(71, 201, 71, 2),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'total',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         title: Text('Cart'),
-        actions: <Widget>[],
       ),
       body: Container(
         color: Color(0xFFededed),
@@ -27,11 +41,6 @@ class CartScreen extends StatelessWidget {
           itemBuilder: ((ctx, i) => ChangeNotifierProvider.value(
                 value: cartItems[i],
                 child: CartItemsWidget(),
-                // cartItems[i].id,
-                // cartItems[i].itemName,
-                // cartItems[i].quantity,
-                // cartItems[i].price,
-                // cartItems[i].imageUrl,
               )),
         ),
       ),

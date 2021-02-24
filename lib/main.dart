@@ -31,9 +31,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (ctx) => Cart(),
         ),
-        ChangeNotifierProvider(
-          create: (ctx) => Cart(),
-        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

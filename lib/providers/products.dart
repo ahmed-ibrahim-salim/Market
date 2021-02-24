@@ -92,4 +92,24 @@ class Products with ChangeNotifier {
   List<Product> get productItems {
     return [..._productItems];
   }
+
+  void addProduct(
+    String id,
+    String categoryId,
+    String title,
+    String description,
+    double price,
+    String imageUrl,
+  ) {
+    final prod = Product(
+      id: id,
+      categoryId: categoryId,
+      title: title,
+      description: description,
+      price: price,
+      imageUrl: imageUrl,
+    );
+    _productItems.add(prod);
+    notifyListeners();
+  }
 }
