@@ -9,6 +9,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
     final cartItems = cart.cartItems.values.toList();
+    
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         color: Color.fromRGBO(71, 201, 71, 2),

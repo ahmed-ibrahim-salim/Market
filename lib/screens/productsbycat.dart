@@ -19,7 +19,6 @@ class CategoryItemsScreen extends StatelessWidget {
         .productItems
         .where((prod) => prod.categoryId == categoryArgs.id)
         .toList();
-    print(categoryArgs.id);
     return Scaffold(
       appBar: AppBar(
         title: Text(categoryArgs.title),

@@ -1,4 +1,5 @@
 import 'package:Market/screens/CartScreen.dart';
+import '../widgets/sideDrawer.dart';
 
 import '../widgets/category_item.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ class MainCategoryScreen extends StatelessWidget {
               }),
         ],
       ),
+      drawer: SideDrawer(),
       body: Container(
         color: Color(0xFFededed),
         child: GridView.builder(
