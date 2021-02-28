@@ -1,5 +1,4 @@
 import 'package:Market/screens/MyproductsScreen.dart';
-import 'package:Market/screens/productsbycat.dart';
 import 'package:flutter/material.dart';
 
 class SideDrawer extends StatelessWidget {

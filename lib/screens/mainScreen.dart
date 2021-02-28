@@ -39,10 +39,6 @@ class MainCategoryScreen extends StatelessWidget {
               categoryItems[i].title, categoryItems[i].imageUrl),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add),
-      ),
     );
   }
 }

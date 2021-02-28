@@ -48,7 +48,7 @@ class _FavouriteItemsWidgetState extends State<FavouriteItemsWidget> {
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
-                        product.price.toString(),
+                        '${product.price.toString()}\$',
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -57,6 +57,11 @@ class _FavouriteItemsWidgetState extends State<FavouriteItemsWidget> {
                             onPressed: () {
                               cart.addItem(product.id, product.title,
                                   product.price, product.imageUrl);
+                              Scaffold.of(context).hideCurrentSnackBar();
+                              Scaffold.of(context).showSnackBar(SnackBar(
+                                content: Text('Added to cart!'),
+                                duration: Duration(seconds: 2),
+                              ));
                             },
                             icon: Icon(Icons.add_shopping_cart),
                             label: cart.cartItems.containsKey(product.id)

@@ -9,7 +9,8 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
     final cartItems = cart.cartItems.values.toList();
-    
+    final total = Provider.of<Cart>(context).total;
+
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         color: Color.fromRGBO(71, 201, 71, 2),
@@ -17,7 +18,7 @@ class CartScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'total',
+              'Total $total\$',
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 30,

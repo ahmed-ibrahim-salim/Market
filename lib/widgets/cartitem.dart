@@ -35,7 +35,7 @@ class CartItemsWidget extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      cartItem1.price.toString(),
+                      '${cartItem1.price.toString()}\$',
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

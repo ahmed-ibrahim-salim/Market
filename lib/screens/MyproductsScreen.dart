@@ -1,5 +1,6 @@
 import 'package:Market/providers/product.dart';
 import 'package:Market/providers/products.dart';
+import 'package:Market/screens/AddOrEditProduct.dart';
 import 'package:Market/widgets/myProducts.dart';
 import 'package:Market/widgets/sideDrawer.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,12 @@ class MyProductsScreen extends StatelessWidget {
                   value: myProducts[i],
                   child: MyProductsItemWidget(),
                 )),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pushNamed(EditProductScreen.routeName);
+        },
+        child: Icon(Icons.add),
       ),
     );
   }
