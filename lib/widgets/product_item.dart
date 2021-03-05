@@ -10,6 +10,7 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context);
     final cart = Provider.of<Cart>(context);
+
     callFavourite(Product product) {
       product.addProductToFavourite(product);
     }
@@ -51,12 +52,14 @@ class ProductItem extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          RaisedButton.icon(
+                          ElevatedButton.icon(
                             onPressed: () {
                               cart.addItem(product.id, product.title,
                                   product.price, product.imageUrl);
-                              Scaffold.of(context).hideCurrentSnackBar();
-                              Scaffold.of(context).showSnackBar(SnackBar(
+                              ScaffoldMessenger.of(context)
+                                  .hideCurrentSnackBar();
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
                                 content: Text('Added to cart!'),
                                 duration: Duration(seconds: 2),
                               ));
@@ -65,17 +68,30 @@ class ProductItem extends StatelessWidget {
                             label: cart.cartItems.containsKey(product.id)
                                 ? Text('IN CART')
                                 : Text('ADD TO CART'),
-                            color: cart.cartItems.containsKey(product.id)
-                                ? Colors.grey
-                                : Color.fromRGBO(71, 201, 71, 2),
-                            textColor: Colors.white,
+                            style: ElevatedButton.styleFrom(
+                                primary: cart.cartItems.containsKey(product.id)
+                                    ? Colors.grey
+                                    : Color.fromRGBO(71, 201, 71, 2),
+                                textStyle: TextStyle(
+                                  color: Colors.white,
+                                )),
                           ),
                           IconButton(
                             icon: Icon(product.isFavourite
                                 ? Icons.favorite
                                 : Icons.favorite_border_outlined),
                             color: Colors.red,
-                            onPressed: () => callFavourite(product),
+                            onPressed: () {
+                              callFavourite(product);
+                              product.isFavourite
+                                  ? ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text('Added to favourites!'),
+                                        duration: Duration(seconds: 1),
+                                      ),
+                                    )
+                                  : null;
+                            },
                           ),
                         ],
                       )

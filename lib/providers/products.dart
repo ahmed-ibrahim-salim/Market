@@ -93,23 +93,23 @@ class Products with ChangeNotifier {
     return [..._productItems];
   }
 
-  void addProduct(
-    String id,
-    String categoryId,
-    String title,
-    String description,
-    double price,
-    String imageUrl,
-  ) {
-    final prod = Product(
-      id: id,
-      categoryId: categoryId,
-      title: title,
-      description: description,
-      price: price,
-      imageUrl: imageUrl,
+  void addNewProduct(Product product) {
+    final newProd = Product(
+      id: DateTime.now().toString(),
+      categoryId: product.categoryId,
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      imageUrl: product.imageUrl,
+      isFavourite: false,
     );
-    _productItems.add(prod);
+    _productItems.insert(0, newProd);
+    notifyListeners();
+  }
+
+  void updateProduct(String id, Product newProduct) {
+    final _prodIndex = _productItems.indexWhere((element) => element.id == id);
+    _productItems[_prodIndex] = newProduct;
     notifyListeners();
   }
 

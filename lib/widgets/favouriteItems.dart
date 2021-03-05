@@ -53,12 +53,15 @@ class _FavouriteItemsWidgetState extends State<FavouriteItemsWidget> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          RaisedButton.icon(
+                          ElevatedButton.icon(
                             onPressed: () {
                               cart.addItem(product.id, product.title,
                                   product.price, product.imageUrl);
-                              Scaffold.of(context).hideCurrentSnackBar();
-                              Scaffold.of(context).showSnackBar(SnackBar(
+                              ScaffoldMessenger.of(context)
+                                  .hideCurrentSnackBar();
+                              // Scaffold.of(context)..hideCurrentSnackBar();
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
                                 content: Text('Added to cart!'),
                                 duration: Duration(seconds: 2),
                               ));
@@ -67,11 +70,16 @@ class _FavouriteItemsWidgetState extends State<FavouriteItemsWidget> {
                             label: cart.cartItems.containsKey(product.id)
                                 ? Text('IN CART')
                                 : Text('ADD TO CART'),
-                            color: cart.cartItems.containsKey(product.id)
-                                ? Colors.grey
-                                : Color.fromRGBO(71, 201, 71, 2),
-                            textColor: Colors.white,
+                            style: ElevatedButton.styleFrom(
+                                primary: cart.cartItems.containsKey(product.id)
+                                    ? Colors.grey
+                                    : Color.fromRGBO(71, 201, 71, 2),
+                                textStyle: TextStyle(color: Colors.white)),
                           ),
+                          // color: cart.cartItems.containsKey(product.id)
+                          //     ? Colors.grey
+                          //     : Color.fromRGBO(71, 201, 71, 2),
+
                           IconButton(
                               icon: Icon(product.isFavourite
                                   ? Icons.favorite
@@ -79,6 +87,16 @@ class _FavouriteItemsWidgetState extends State<FavouriteItemsWidget> {
                               color: Colors.red,
                               onPressed: () {
                                 product.addProductToFavourite(product);
+                                // Scaffold.of(context).hideCurrentSnackBar();
+                                product.isFavourite
+                                    ? ScaffoldMessenger.of(context)
+                                        .showSnackBar(
+                                        SnackBar(
+                                          content: Text('Added to favourites!'),
+                                          duration: Duration(seconds: 1),
+                                        ),
+                                      )
+                                    : null;
                               }),
                         ],
                       )

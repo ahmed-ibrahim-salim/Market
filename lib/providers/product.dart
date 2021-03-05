@@ -28,7 +28,7 @@ class Product with ChangeNotifier {
     this.description,
     this.price,
     this.imageUrl,
-    this.isFavourite,
+    this.isFavourite = false,
   });
   void addProductToFavourite(Product prod) {
     prod.isFavourite = !prod.isFavourite;

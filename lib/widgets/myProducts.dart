@@ -1,5 +1,6 @@
 import 'package:Market/providers/product.dart';
 import 'package:Market/providers/products.dart';
+import 'package:Market/screens/AddOrEditProduct.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +23,10 @@ class MyProductsItemWidget extends StatelessWidget {
             children: [
               IconButton(
                 icon: Icon(Icons.edit),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed(EditProductScreen.routeName,
+                      arguments: product.id);
+                },
                 color: Theme.of(context).primaryColor,
               ),
               IconButton(
